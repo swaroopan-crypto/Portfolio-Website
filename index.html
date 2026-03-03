@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheepuri Jyothi Swaroopan - Portfolio</title>
+
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Atropos 3D Library -->
+    <link rel="stylesheet" href="https://unpkg.com/atropos/atropos.css" />
+
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --accent: #22d3ee;
+            --bg-dark: #07070a;
+            --card-glass: rgba(255, 255, 255, 0.05);
+            --border-glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Abstract Glow Background */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            animation: float 10s infinite alternate ease-in-out;
+        }
+
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            top: -100px;
+            left: -100px;
+            opacity: 0.4;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--secondary);
+            bottom: -200px;
+            right: -100px;
+            opacity: 0.3;
+        }
+
+        .blob-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--accent);
+            top: 40%;
+            left: 30%;
+            opacity: 0.2;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(60px, 60px) scale(1.1);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hero Header */
+        header {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .glass-panel {
+            background: var(--card-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            width: 100%;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #cbd5e1;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* 3D Projects Section */
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 4rem 0 3rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        /* Atropos 3D Card Adjustments */
+        .my-atropos {
+            width: 100%;
+            height: 520px;
+            border-radius: 24px;
+        }
+
+        .atropos-inner {
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-img-bg {
+            position: absolute;
+            top: -5%;
+            left: -5%;
+            width: 110%;
+            height: 110%;
+            object-fit: cover;
+            opacity: 0.35;
+            transition: opacity 0.5s;
+            z-index: 0;
+            filter: saturate(1.2);
+        }
+
+        .my-atropos:hover .project-img-bg {
+            opacity: 0.8;
+        }
+
+        .project-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem 2rem;
+            background: linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.8) 50%, transparent 100%);
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: all 0.3s;
+        }
+
+        .project-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .project-desc {
+            font-size: 1rem;
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            backdrop-filter: blur(4px);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .metric-value {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            flex: 1;
+            text-align: center;
+            justify-content: center;
+            padding: 0.85rem;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .skill-card {
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            padding: 2.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-icon {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            font-weight: 800;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            color: #cbd5e1;
+        }
+
+        .skill-card ul li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .skill-card ul li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: #64748b;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .my-atropos {
+                height: auto;
+                min-height: 600px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="container">
+        <!-- HEADER / HERO -->
+        <header>
+            <div class="glass-panel atropos-hero" data-atropos-offset="2">
+                <h1>Cheepuri Jyothi Swaroopan</h1>
+                <p class="subtitle">Business Analyst & Data-Driven Problem Solver</p>
+                <div class="contact-links">
+                    <a href="mailto:cheepuriswaroopan@gmail.com" class="btn btn-primary">
+                        <i data-lucide="mail"></i> Email Me
+                    </a>
+                    <a href="https://github.com/swaroopan-crypto" target="_blank" class="btn btn-outline">
+                        <i data-lucide="github"></i> GitHub Profile
+                    </a>
+                    <a href="#" class="btn btn-outline" style="pointer-events: none; opacity: 0.5;">
+                        <i data-lucide="linkedin"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- PROJECTS -->
+        <h2 class="section-title">Business Analytics Projects</h2>
+
+        <div class="projects-grid">
+            <!-- PROJECT 1: Revenue Optimizer -->
+            <div class="atropos my-atropos">
+                <div class="atropos-scale">
+                    <div class="atropos-rotate">
+                        <div class="atropos-inner">
+                            <img src="assets/revenue.png" alt="Revenue Optimization Dashboard" class="project-img-bg"
+                                data-atropos-offset="-5" />
+
+                            <div class="project-content" data-atropos-offset="5">
+                                <h3 class="project-title" data-atropos-offset="8">Revenue Optimizer</h3>
+                                <p class="project-desc" data-atropos-offset="6">
+                                    Dynamic pricing machine learning model maximizing revenue via precise price
+                                    elasticity analysis.
+                                </p>
+
+                                <div class="tags" data-atropos-offset="8">
+                                    <span class="tag">Machine Learning</span>
+                                    <span class="tag">Python</span>
+                                    <span class="tag">Scikit-Learn</span>
+                                    <span class="tag">Log-Log Regression</span>
+                                </div>
+
+                                <div class="metrics-grid" data-atropos-offset="10">
+                                    <div>
+                                        <div class="metric-value">10K+</div>
+                                        <div class="metric-label">Txns Analysed</div>
+                                    </div>
+                                    <div>
+                                        <div class="metric-value">+12%</div>
+                                        <div class="metric-label">Avg Rev Inc</div>
+                                    </div>
+                                    <div>
+                                        <div class="metric-value">High</div>
+                                        <div class="metric-label">Impact</div>
+                                    </div>
+                                </div>
+
+                                <div class="project-links" data-atropos-offset="12">
+                                    <a href="https://github.com/swaroopan-crypto/revenue_optimizer" target="_blank"
+                                        class="btn btn-primary">
+                                        <i data-lucide="github"></i> Repository
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT 2: Supply Chain Commander -->
+            <div class="atropos my-atropos">
+                <div class="atropos-scale">
+                    <div class="atropos-rotate">
+                        <div class="atropos-inner">
+                            <img src="assets/supply_chain.png" alt="Supply Chain Dashboard" class="project-img-bg"
+                                data-atropos-offset="-5" />
+
+                            <div class="project-content" data-atropos-offset="5">
+                                <h3 class="project-title" data-atropos-offset="8">Supply Chain Commander</h3>
+                                <p class="project-desc" data-atropos-offset="6">
+                                    Predictive analytics dashboard simulating inventory shortages up to 30 days in
+                                    advance.
+                                </p>
+
+                                <div class="tags" data-atropos-offset="8">
+                                    <span class="tag">Time Series</span>
+                                    <span class="tag">Power BI</span>
+                                    <span class="tag">Pandas</span>
+                                    <span class="tag">Prophet</span>
+                                </div>
+
+                                <div class="metrics-grid" data-atropos-offset="10">
+                                    <div>
+                                        <div class="metric-value">18K+</div>
+                                        <div class="metric-label">Orders</div>
+                                    </div>
+                                    <div>
+                                        <div class="metric-value">$48K</div>
+                                        <div class="metric-label">Risk Saved</div>
+                                    </div>
+                                    <div>
+                                        <div class="metric-value">30d</div>
+                                        <div class="metric-label">Forecast</div>
+                                    </div>
+                                </div>
+
+                                <div class="project-links" data-atropos-offset="12">
+                                    <a href="https://github.com/swaroopan-crypto/supply_chain_commander" target="_blank"
+                                        class="btn btn-primary">
+                                        <i data-lucide="github"></i> Repository
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SKILLS -->
+        <h2 class="section-title">Technical Expertise</h2>
+        <div class="skills-container">
+            <div class="skill-card">
+                <i data-lucide="terminal" class="skill-icon" stroke-width="2" size="40"></i>
+                <h3>Programming & Data</h3>
+                <ul>
+                    <li>Python (Pandas, NumPy)</li>
+                    <li>Scikit-Learn, Scipy</li>
+                    <li>SQL (PostgreSQL, MySQL)</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <i data-lucide="bar-chart-2" class="skill-icon" stroke-width="2" size="40"></i>
+                <h3>Visualization Tools</h3>
+                <ul>
+                    <li>Power BI Dashboards</li>
+                    <li>Matplotlib & Seaborn</li>
+                    <li>Advanced Excel Methods</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <i data-lucide="brain-circuit" class="skill-icon" stroke-width="2" size="40"></i>
+                <h3>Statistical Methods</h3>
+                <ul>
+                    <li>Linear & Log-Log Regression</li>
+                    <li>Time Series Forecasting</li>
+                    <li>Model Optimization</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <i data-lucide="briefcase" class="skill-icon" stroke-width="2" size="40"></i>
+                <h3>Business Analysis</h3>
+                <ul>
+                    <li>Requirements Gathering</li>
+                    <li>KPI Development</li>
+                    <li>Process Optimization</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 Cheepuri Jyothi Swaroopan | Designed with Advanced 3D Aesthetics & Glassmorphism</p>
+        </footer>
+    </div>
+
+    <!-- Atropos JS API -->
+    <script src="https://unpkg.com/atropos/atropos.js"></script>
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Initialize Atropos on cards
+        document.querySelectorAll('.my-atropos').forEach((el) => {
+            Atropos({
+                el: el,
+                activeOffset: 40,
+                shadowScale: 1.05,
+            });
+        });
+    </script>
+</body>
+
+</html>
