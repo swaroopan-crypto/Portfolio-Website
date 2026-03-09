@@ -44,6 +44,7 @@
             border-radius: 50%;
             filter: blur(100px);
             z-index: -1;
+            pointer-events: none;
             animation: float 10s infinite alternate ease-in-out;
         }
 
@@ -235,6 +236,11 @@
             flex-direction: column;
             justify-content: flex-end;
             transition: all 0.3s;
+            pointer-events: none;
+        }
+
+        .project-content>* {
+            pointer-events: auto;
         }
 
         .project-title {
@@ -296,6 +302,8 @@
         .project-links {
             display: flex;
             gap: 1rem;
+            position: relative;
+            z-index: 100;
         }
 
         .project-links a {
@@ -303,6 +311,9 @@
             text-align: center;
             justify-content: center;
             padding: 0.85rem;
+            position: relative;
+            z-index: 100;
+            pointer-events: auto;
         }
 
         /* Skills Section */
@@ -572,6 +583,15 @@
 
         // Initialize Atropos on cards
         document.querySelectorAll('.my-atropos').forEach((el) => {
+            // Card-wide clickable link approach
+            el.style.cursor = 'pointer';
+            el.addEventListener('click', (e) => {
+                const link = el.querySelector('.project-links a');
+                if (link && !e.target.closest('a')) {
+                    window.open(link.href, link.target || '_self');
+                }
+            });
+
             Atropos({
                 el: el,
                 activeOffset: 40,
